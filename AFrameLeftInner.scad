@@ -8,9 +8,11 @@ AFrameLeftInner(
 module AFrameLeftInner(
     is_printable = false
 ) {
-    if(is_printable) {
-        rotate(-90, VEC_Y) AFrameSide("inner");
-    } else {
-        mirror(VEC_X) AFrameSide("inner");
+    mirror(VEC_X) {
+        if(is_printable) {
+            rotate(-90, VEC_Y) AFrameSide("inner");
+        } else {
+            AFrameSide("inner");
+        }
     }
 }

@@ -11,7 +11,7 @@ module Block(
     is_printable = false
 ) {
     if(is_printable) {
-        Part();
+        rotate(180, VEC_X)Part();
     } else {
         translate([0, -3, leg_height]) rotate(90, VEC_X) {
             Part();
