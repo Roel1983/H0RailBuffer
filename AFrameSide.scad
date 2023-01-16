@@ -1,11 +1,13 @@
 include <Config.inc>
 include <Constants.inc>
+use <MirrorCopy.scad>
 
-translate([0, -20]) AFrameSide("inner");
+translate([0, -20]) AFrameSide("inner", add_print_support = true);
 translate([0,  20]) AFrameSide("outer");
 
 module AFrameSide(
-    type
+    type,
+    add_print_support = false
 ) {
     assert(type == "inner" || type == "outer");
     
@@ -20,6 +22,12 @@ module AFrameSide(
         angle = atan(tilt / (leg_height - foot_height));
         leg_length = sqrt(pow(tilt, 2) + pow((leg_height - foot_height), 2));
         foot_length = (foot_height + foot_bottom) / cos(angle);
+        
+        if(add_print_support) {
+            translate([0, -tilt * 1.2 - foot_width[Y]/2 - 1, -foot_bottom + 0.5 * NOZZLE]) {
+                cube([rail_width/2 - LAYER/2,foot_width[Y] + abs(tilt) * .3, NOZZLE]);
+            }
+        }
      
         translate([0, -tilt, foot_height]) {
             difference() {
@@ -31,8 +39,8 @@ module AFrameSide(
                                 leg_width[1] - 2 * indent,
                                 leg_length + 2*BIAS], true);
                         }
-                        translate([leg_width[0] / 3, 0]) {
-                            cube([leg_width[0] / 3, leg_width[1], leg_length + 2*BIAS], true);
+                        translate([leg_width[X] / 3, 0]) {
+                            cube([leg_width[X] / 3, leg_width[Y], leg_length + 2*BIAS], true);
                         }
                     }
                     intersection() {

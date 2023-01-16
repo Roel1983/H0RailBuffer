@@ -1,6 +1,6 @@
 BIAS   = 0.01;
 INV    = 20;
-TOL    = 0.10;
+TOL    = 0.05;
 NOZZLE = 0.4;
 LAYER  = 0.1;
 

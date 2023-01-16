@@ -9,7 +9,8 @@ module AFrameRightInner(
     is_printable = false
 ) {
     if(is_printable) {
-        rotate(-90, VEC_Y) AFrameSide("inner");
+        echo("Detect thin walls: true");
+        rotate(-90, VEC_Y) AFrameSide("inner", add_print_support = true);
     } else {
         AFrameSide("inner");
     }

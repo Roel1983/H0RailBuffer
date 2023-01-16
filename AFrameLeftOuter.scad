@@ -9,7 +9,8 @@ module AFrameLeftOuter(
     is_printable = false
 ) {
     if(is_printable) {
-        rotate(-90, VEC_Y) AFrameSide("outer");
+        echo("Detect thin walls: true");
+        rotate(-90, VEC_Y) AFrameSide("outer", add_print_support = true);
     } else {
         AFrameSide("outer");
     }
